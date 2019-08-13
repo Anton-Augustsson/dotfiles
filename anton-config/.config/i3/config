@@ -171,7 +171,7 @@ bar {
                 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
 }
-exec "feh --bg-fill /home/anton/pictures/wallpapper/wallpaper.jpg"
+exec "feh --bg-fill /home/anton/pictures/wallpaper/wallpaper.jpg"
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 # Looke and feel
