@@ -4,10 +4,10 @@ echo ’ arch-linux-installation script ‘
 echo '
 127.0.0.1    localhost
 ::1        localhost
-127.0.1.1    myhostname.localdomain    myhostname
+127.0.1.1    al-thinkpad.localdomain    al-thinkpad
 '  >> /etc/hostname
 
-echo 'al-thinkpadt' >> /etc/hostname
+echo 'al-thinkpad' >> /etc/hostname
 
 echo ‘
 write your password root
