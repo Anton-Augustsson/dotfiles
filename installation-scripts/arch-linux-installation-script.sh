@@ -1,4 +1,6 @@
-echo ' arch-linux-installation script '
+echo ' 
+arch-linux-installation script 
+'
 
 # Host configuration
 echo '
