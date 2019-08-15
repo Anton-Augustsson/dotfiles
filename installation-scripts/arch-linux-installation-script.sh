@@ -1,4 +1,4 @@
-echo ’ arch-linux-installation script ‘
+echo ' arch-linux-installation script '
 
 # Host configuration
 echo '
@@ -9,33 +9,33 @@ echo '
 
 echo 'al-thinkpad' >> /etc/hostname
 
-echo ‘
+echo '
 write your password root
-‘
+'
 passwd
 
 useradd -m -G wheel -s /bin/bash anton
-echo ‘
+echo '
 write your password user
-‘
+'
 passwd anton
 
 
 # Region specific configuration
-echo ‘
+echo '
 en_GB.UTF-8 UTF-8
 en_GB ISO-8859-1
 sv_SE.UTF-8 UTF-8
 sv_SE ISO-8859-1
-‘ >> /etc/locale.gen
+' >> /etc/locale.gen
 locale-gen
 
-echo ‘
+echo '
 LANG=en_GB.UTF-8
-‘ >> /etc/locale.conf
-echo ‘
+' >> /etc/locale.conf
+echo '
 KEYMAP=sv-latin1
-‘ >>/etc/vconsole.conf
+' >>/etc/vconsole.conf
 
 
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
@@ -61,12 +61,12 @@ mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Down
 # Desktop environment
 pacman -S dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus 
 systemctl enable lightdm
-##
+## desktop language
 localectl set-keymap se
 localectl set-x11-keymap se
-##
+## download conf file
 scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/pictures/wallpaper/wallpaper.jpg
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
 wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.emacs
 echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
 wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.Xdefaults
