@@ -45,10 +45,9 @@ hwclock --systohc
 pacman -S networkmanager
 systemctl enable NetworkManager
 ## ssh
-sudo pacman -S openssh
-emacs /etc/ssh/sshd_config
-sudo systemctl enable sshd
-sudo systemctl start sshd
+pacman -S openssh
+systemctl enable sshd
+systemctl start sshd
 
 # Boot loader
 pacman -S grub
@@ -74,7 +73,7 @@ wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-fil
 
 # Applications
 ## yay
-sudo pacman -S --needed base-devel git
+pacman -S --needed base-devel git
 mkdir programs
 cd programs
 git clone https://aur.archlinux.org/yay.git
@@ -82,4 +81,4 @@ cd yay
 makepkg -si
 
 cd /home/anton
-sudo pacman -S texlive-most arduino kicad
+pacman -S texlive-most arduino kicad
