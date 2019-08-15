@@ -3,13 +3,12 @@ arch-linux-installation script
 '
 
 # Host configuration
+echo 'al-thinkpad' >> /etc/hostname
 echo '
 127.0.0.1    localhost
-::1        localhost
+::1          localhost
 127.0.1.1    al-thinkpad.localdomain    al-thinkpad
-'  >> /etc/hostname
-
-echo 'al-thinkpad' >> /etc/hostname
+'  >> /etc/hosts
 
 echo '
 write your password root
@@ -82,5 +81,12 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 sudo -u anton makepkg -si
 
-cd /home/anton
-pacman -S texlive-most arduino kicad
+#cd /home/anton
+#pacman -S texlive-most arduino kicad
+
+echo '
+# Finnish
+exit
+umount -R /mnt
+reboot
+'
