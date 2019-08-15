@@ -80,7 +80,7 @@ mkdir programs
 cd programs
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+sudo -u anton makepkg -si
 
 cd /home/anton
 pacman -S texlive-most arduino kicad
