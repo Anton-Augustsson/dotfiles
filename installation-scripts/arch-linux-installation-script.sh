@@ -66,7 +66,7 @@ systemctl enable lightdm
 localectl set-keymap se
 localectl set-x11-keymap se
 ## download conf file
-scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/pictures/wallpaper/wallpaper.jpg
+scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
 #wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
 wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.emacs
 echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
@@ -75,14 +75,12 @@ wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-fil
 # Applications
 ## yay
 pacman -S --needed base-devel git
-mkdir programs
-cd programs
+cd /home/anton/Programs
 git clone https://aur.archlinux.org/yay.git
 cd yay
 sudo -u anton makepkg -si
 
-#cd /home/anton
-#pacman -S texlive-most arduino kicad
+pacman -S arduino kicad
 
 echo '
 # Finnish
