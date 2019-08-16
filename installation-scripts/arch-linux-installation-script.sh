@@ -1,6 +1,7 @@
 echo ' 
 arch-linux-installation script 
 '
+EDITOR=emacs visudo
 
 # Host configuration
 echo 'al-thinkpad' >> /etc/hostname
@@ -43,15 +44,15 @@ ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
 
 # Network
-pacman -S networkmanager
+pacman -S --noconfirm networkmanager
 systemctl enable NetworkManager
 ## ssh
-pacman -S openssh
+pacman -S --noconfirm openssh
 systemctl enable sshd
 systemctl start sshd
 
 # Boot loader
-pacman -S grub
+pacman -S --noconfirm grub
 grub-install --target i386-pc /dev/xvda
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -60,7 +61,7 @@ cd /home/anton
 mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
 # Desktop environment
-pacman -S dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
+pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
 systemctl enable lightdm
 ## desktop language
 localectl set-keymap se
@@ -74,13 +75,13 @@ wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-fil
 
 # Applications
 ## yay
-pacman -S --needed base-devel git
+pacman -S --noconfirm --needed base-devel git
 cd /home/anton/Programs
 git clone https://aur.archlinux.org/yay.git
 cd yay
 sudo -u anton makepkg -si
 
-pacman -S arduino kicad
+pacman -S --noconfirm arduino kicad
 
 echo '
 # Finnish
