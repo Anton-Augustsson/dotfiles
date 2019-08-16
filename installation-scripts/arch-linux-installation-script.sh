@@ -53,7 +53,7 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
-grub-install --target i386-pc /dev/xvda
+grub-install --target i386-pc /dev/sdb
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Directory anton home
@@ -87,6 +87,8 @@ pacman -S --noconfirm arduino kicad
 
 echo '
 # Finnish
+grub-install --target i386-pc /dev/xvda
+grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
 reboot
