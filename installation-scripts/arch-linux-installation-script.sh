@@ -58,7 +58,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Directory anton home
 cd /home/anton
-mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
+sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
+chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
 # Desktop environment
 pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
@@ -77,7 +78,8 @@ wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-fil
 ## yay
 pacman -S --noconfirm --needed base-devel git
 cd /home/anton/Programs
-git clone https://aur.archlinux.org/yay.git
+sudo -u anton git clone https://aur.archlinux.org/yay.git
+chmod 777 yay
 cd yay
 sudo -u anton makepkg -si
 
