@@ -60,7 +60,7 @@ cd /home/anton
 mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
 # Desktop environment
-pacman -S dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus 
+pacman -S dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
 systemctl enable lightdm
 ## desktop language
 localectl set-keymap se
