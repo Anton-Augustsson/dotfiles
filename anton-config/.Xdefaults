@@ -30,8 +30,8 @@
 
 
 !! URxvt Appearance                                                                                                                                                                                                                                                           
-rxvt.font: xft:DejaVu Sans Mono:pixelsize=13
-urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=13:weight=bold
+rxvt.font: xft:DejaVu Sans Mono:pixelsize=33
+urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=33:weight=bold
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
