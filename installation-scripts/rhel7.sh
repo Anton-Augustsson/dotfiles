@@ -19,19 +19,23 @@ source ~/.bashrc
 
 
 # Plex
-wget https://downloads.plex.tv/plex-media-server-new/1.16.3.1402-22929c8a2/redhat/plexmediaserver-1.16.3.1402-22929c8a2.x86_64.rpm
-rpm -i plexmediaserver-1.16.3.1402-22929c8a2.x86_64.rpm
+mkdir /media/movies
+mkdir /media/series
+sudo chmod 777 /media/movies
+sudo chmod 777 /media/series
 
-systemctl start plexmediaserver
-systemctl enable plexmediaserver
+curl -O https://downloads.plex.tv/plex-media-server-new/1.16.5.1488-deeb86e7f/redhat/plexmediaserver-1.16.5.1488-deeb86e7f.x86_64.rpm
+sudo yum update
+sudo yum install plexmediaserver-1.16.5.1488-deeb86e7f.x86_64.rpm
+
 systemctl status plexmediaserver
 
-firewall-cmd --add-service=plexmediaserver --permanent
+firewall-cmd --add-service=plexm --permanent
 firewall-cmd --reload
 firewall-cmd --list-all
 
-chmod 777 <the foler you want>
 ## http://192.168.1.232:32400/web
+
 
 # Containers
 subscription-manager repos --enable rhel-7-server-extras-beta-rpms
