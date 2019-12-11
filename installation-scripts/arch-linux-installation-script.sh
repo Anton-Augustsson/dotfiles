@@ -2,9 +2,10 @@ echo '
 arch-linux-installation script 
 '
 EDITOR=emacs visudo
-
+HOSTNAME='arch-thinkpad'
+USERNAME=anton
 # Host configuration
-echo 'al-thinkpad' >> /etc/hostname
+echo HOSTNAME >> /etc/hostname
 echo '
 127.0.0.1    localhost
 ::1          localhost
@@ -16,7 +17,7 @@ write your password root
 '
 passwd
 
-useradd -m -G wheel -s /bin/bash anton
+useradd -m -G wheel -s /bin/bash USERNAME
 echo '
 write your password user
 '
