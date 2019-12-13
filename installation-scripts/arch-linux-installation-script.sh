@@ -44,6 +44,9 @@ KEYMAP=sv-latin1
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
 
+# Mirroring list
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
 # Network
 pacman -S --noconfirm networkmanager
 systemctl enable NetworkManager
@@ -63,8 +66,8 @@ sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/
 chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
 # Desktop environment
-pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
-systemctl enable lightdm zsh
+pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils zsh
+systemctl enable lightdm 
 
 ## zsh
 chsh -s /bin/zsh
