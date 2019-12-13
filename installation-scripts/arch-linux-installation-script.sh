@@ -45,11 +45,12 @@ ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
 
 # Mirroring list
+pacman -S --noconfirm pacman-contrib
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 # Network
-pacman -S --noconfirm networkmanager
+pacman -S --noconfirm jre-openjdk networkmanager
 systemctl enable NetworkManager
 ## ssh
 pacman -S --noconfirm openssh
