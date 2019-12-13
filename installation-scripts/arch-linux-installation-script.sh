@@ -2,10 +2,10 @@ echo '
 arch-linux-installation script 
 '
 EDITOR=emacs visudo
-HOSTNAME='arch-thinkpad'
-USERNAME=anton
+DRIVE=/dev/xvda
+
 # Host configuration
-echo HOSTNAME >> /etc/hostname
+echo 'arch-thinkpad' >> /etc/hostname
 echo '
 127.0.0.1    localhost
 ::1          localhost
@@ -17,7 +17,7 @@ write your password root
 '
 passwd
 
-useradd -m -G wheel -s /bin/bash USERNAME
+useradd -m -G wheel -s /bin/bash anton
 echo '
 write your password user
 '
@@ -54,7 +54,7 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
-grub-install --target i386-pc /dev/sdb
+grub-install --target i386-pc $DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Directory anton home
@@ -64,16 +64,21 @@ chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper 
 
 # Desktop environment
 pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
-systemctl enable lightdm
+systemctl enable lightdm zsh
+
+## zsh
+chsh -s /bin/zsh
+
 ## desktop language
-localectl set-keymap se
+#localectl set-keymap se
 #localectl set-x11-keymap se
+
 ## download conf file
 scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
 #wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.emacs
-echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.Xdefaults
+wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.config/emacs
+#echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
+wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.config/Xdefaults
 
 # Applications
 ## yay
