@@ -53,7 +53,7 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
-grub-install --target i386-pc /dev/sdb
+grub-install --target i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Directory anton home
@@ -68,7 +68,7 @@ systemctl enable lightdm
 localectl set-keymap se
 #localectl set-x11-keymap se
 ## download conf file
-scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
+#scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
 #wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
 wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.emacs
 echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
@@ -87,8 +87,6 @@ pacman -S --noconfirm arduino kicad
 
 echo '
 # Finnish
-grub-install --target i386-pc /dev/xvda
-grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
 reboot
