@@ -59,8 +59,8 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
-grub-install --target i386-pc $DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target i386-pc $DRIVE
 
 # Directory anton home
 cd /home/anton
