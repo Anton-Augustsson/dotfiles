@@ -2,9 +2,10 @@ echo '
 arch-linux-installation script 
 '
 EDITOR=emacs visudo
+DRIVE=/dev/xvda
 
 # Host configuration
-echo 'al-thinkpad' >> /etc/hostname
+echo 'arch-thinkpad' >> /etc/hostname
 echo '
 127.0.0.1    localhost
 ::1          localhost
@@ -43,8 +44,13 @@ KEYMAP=sv-latin1
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
 
+# Mirroring list
+pacman -S --noconfirm pacman-contrib
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
 # Network
-pacman -S --noconfirm networkmanager
+pacman -S --noconfirm jre-openjdk networkmanager
 systemctl enable NetworkManager
 ## ssh
 pacman -S --noconfirm openssh
@@ -53,28 +59,28 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
-grub-install --target i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target i386-pc $DRIVE
 
 # Directory anton home
 cd /home/anton
 sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
+## zsh
+pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting
+chsh -s /bin/zsh
+
 # Desktop environment
-pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils
+pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status dmenu feh alsa-utils powerline
 systemctl enable lightdm
 ## desktop language
-localectl set-keymap se
-#localectl set-x11-keymap se
-## download conf file
-#scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
-#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.emacs
-echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.Xdefaults
+sudo -u anton localectl set-keymap se
+sudo -u anton localectl set-x11-keymap se
 
 # Applications
+pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura
+
 ## yay
 pacman -S --noconfirm --needed base-devel git
 cd /home/anton/Programs
@@ -83,7 +89,14 @@ chmod 777 yay
 cd yay
 sudo -u anton makepkg -si
 
-pacman -S --noconfirm arduino kicad
+sudo -u anton yay -S siji termsyn-font polybar
+
+## configuration files
+#scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.config/emacs
+#echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.config/Xdefaults
 
 echo '
 # Finnish
