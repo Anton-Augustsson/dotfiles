@@ -1,27 +1,29 @@
 echo ' 
 arch-linux-installation script 
 '
-EDITOR=emacs visudo
+EDITOR=emacs visudo 
 DRIVE=/dev/xvda
+USER=anton
+HOSTNAME=arch-thinkpad
 
 # Host configuration
-echo 'arch-thinkpad' >> /etc/hostname
-echo '
+echo $HOSTNAME >> /etc/hostname
+echo "
 127.0.0.1    localhost
 ::1          localhost
-127.0.1.1    al-thinkpad.localdomain    al-thinkpad
-'  >> /etc/hosts
+127.0.1.1    $HOSTNAME.localdomain    $HOSTNAME
+"  >> /etc/hosts
 
 echo '
 write your password root
 '
 passwd
 
-useradd -m -G wheel -s /bin/bash anton
+useradd -m -G wheel -s /bin/bash $USER
 echo '
 write your password user
 '
-passwd anton
+passwd $USER
 
 
 # Region specific configuration
@@ -59,27 +61,27 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
+grub-install $DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
-grub-install --target i386-pc $DRIVE
 
 # Directory anton home
 cd /home/anton
 sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
-chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
+#chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 
 ## zsh
 pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting
 chsh -s /bin/zsh
 
 # Desktop environment
-pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status dmenu feh alsa-utils powerline
+pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status dmenu feh alsa-utils powerline w3m
 systemctl enable lightdm
 ## desktop language
 sudo -u anton localectl set-keymap se
 sudo -u anton localectl set-x11-keymap se
 
 # Applications
-pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura
+pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura openscad
 
 ## yay
 pacman -S --noconfirm --needed base-devel git
@@ -91,12 +93,22 @@ sudo -u anton makepkg -si
 
 sudo -u anton yay -S siji termsyn-font polybar
 
+# printer
+pacman -S --noconfirm cups cups-pdf gtk3-print-backends system-config-printer
+systemctl enable org.cups.cupsd.service
+systemctl start org.cups.cupsd.service
+sudo -u anton yay -S brother-mfc-l2700dw
+
 ## configuration files
 #scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
-#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
-#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.config/emacs
-#echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
-#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.config/Xdefaults
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.zshrc -O ¨/.zshrc
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.emacs -O ¨/.emacs
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.Xdefaults -O ¨/.Xdefaults
+wget -q https://github.com/anton-1999/configuration-files/blob/master/config/.config/i3/config -O ¨/.config/i3/config
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/polybar/config -O ¨/.config/polybar/config
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/polybar/launch.sh -O ¨/.config/polybar/launch.sh
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/ranger/rc.conf -O ¨/.config/ranger/rc.conf
+wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/zathura/zathurarc -O ¨/.config/zathura/zathurarc
 
 echo '
 # Finnish
