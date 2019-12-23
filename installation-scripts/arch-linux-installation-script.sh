@@ -59,6 +59,7 @@ systemctl start sshd
 
 # Boot loader
 pacman -S --noconfirm grub
+
 grub-install --target i386-pc $DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -66,6 +67,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 cd /home/anton
 sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
 chmod 777 Programs Documents Documents/git-projects Pictures Pictures/wallpaper Downloads
+
+## zsh
+pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting
+chsh -s /bin/zsh
 
 # Desktop environment
 pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status rxvt-unicode dmenu feh firefox ranger nautilus alsa-utils zsh
@@ -75,17 +80,12 @@ systemctl enable lightdm
 chsh -s /bin/zsh
 
 ## desktop language
-#localectl set-keymap se
-#localectl set-x11-keymap se
-
-## download conf file
-scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
-#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.config/emacs
-#echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
-wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.config/Xdefaults
+sudo -u anton localectl set-keymap se
+sudo -u anton localectl set-x11-keymap se
 
 # Applications
+pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura
+
 ## yay
 pacman -S --noconfirm --needed base-devel git
 cd /home/anton/Programs
@@ -94,12 +94,17 @@ chmod 777 yay
 cd yay
 sudo -u anton makepkg -si
 
-pacman -S --noconfirm arduino kicad
+sudo -u anton yay -S siji termsyn-font polybar
+
+## configuration files
+#scp anton@192.168.1.210:/plex/other/mountain1.jpg /home/anton/Pictures/wallpaper/wallpaper.jpg
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.config/i3/config -O /home/anton/.config/i3/config
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.emacs -O /home/anton/.config/emacs
+#echo 'alias e="sudo emacs -nw"'>> ~/.bashrc
+#wget -q https://raw.githubusercontent.com/UsernameEqualToAnton/configuration-files/master/anton-config/.Xdefaults -O /home/anton/.config/Xdefaults
 
 echo '
 # Finnish
-grub-install --target i386-pc /dev/xvda
-grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
 reboot
