@@ -21,7 +21,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(package-selected-packages (quote (dracula-theme pyvenv flycheck auto-complete))))
+ '(package-selected-packages
+   (quote
+    (dashboard dracula-theme pyvenv flycheck auto-complete))))
         
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -37,7 +39,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")                     
 ;; list the packages you want                                                 
 (setq package-list                                                            
-    '(auto-complete multiple-cursors markdown-mode flycheck pyvenv haskell-mode tex-mode solarized-theme))                                                
+      '(auto-complete multiple-cursors markdown-mode flycheck pyvenv haskell-mode
+		      tex-mode solarized-theme page-break-lines dashboard projectile all-the-icons magit))
+
 ;; activate all the packages                                                   
 (package-initialize)                                                          
 ;; fetch the list of packages available                                       
@@ -139,3 +143,18 @@
 (add-hook 'fortran-mode-hook (function compile-guess-command))
 (add-hook 'haskell-mode-hook (function compile-guess-command))
 (add-hook 'tex-mode-hook     (function compile-guess-command))
+
+
+; dashboard
+;(turn-on-page-break-lines-mode)
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+;;; Or if you use use-package
+;(use-package dashboard
+;  :ensure t
+;  :config
+;  (dashboard-setup-startup-hook))
+;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)))
