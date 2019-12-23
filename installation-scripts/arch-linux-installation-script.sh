@@ -72,17 +72,18 @@ sudo -u anton mkdir Programs Documents Documents/git-projects Pictures Pictures/
 ## zsh
 pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting
 chsh -s /bin/zsh
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 # Desktop environment
 pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status dmenu feh alsa-utils powerline w3m
 systemctl enable lightdm
- 
 ## desktop language
 sudo -u anton localectl set-keymap se
 sudo -u anton localectl set-x11-keymap se
 
 # Applications
-pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura openscad
+pacman -S --noconfirm rxvt-unicode firefox ranger nautilus arduino kicad openscad zathura openscad 
 
 ## yay
 pacman -S --noconfirm --needed base-devel git
