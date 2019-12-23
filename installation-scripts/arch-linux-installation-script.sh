@@ -76,6 +76,7 @@ chsh -s /bin/zsh
 # Desktop environment
 pacman -S --noconfirm dialog wpa_supplicant openssl xorg xorg-xinit xorg-server lightdm lightdm-gtk-greeter i3-gaps i3status dmenu feh alsa-utils powerline w3m
 systemctl enable lightdm
+ 
 ## desktop language
 sudo -u anton localectl set-keymap se
 sudo -u anton localectl set-x11-keymap se
