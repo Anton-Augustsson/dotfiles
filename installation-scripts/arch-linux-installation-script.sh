@@ -112,6 +112,11 @@ wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/
 wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/ranger/rc.conf -O ¨/.config/ranger/rc.conf
 wget -q https://raw.githubusercontent.com/anton-1999/configuration-files/master/config/.config/zathura/zathurarc -O ¨/.config/zathura/zathurarc
 
+## Programing languge
+pacman -S ghc ghc-static cabal-install texlive-most
+echo "PATH=$PATH:~/.cabal/bin" >> ~/.zshrc
+echo "export EDITOR=/usr/bin/emacs" >> ~/.zshrc
+
 echo '
 # Finnish
 exit
