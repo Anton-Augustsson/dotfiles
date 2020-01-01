@@ -10,7 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $screen1 eDP1
+set $screen1 eDP-1 #eDP1
 set $screen2 HDMI2
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -45,21 +45,22 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # aplication start
-bindsym $mod+Control+f exec firefox
-bindsym $mod+Control+n exec nautilus
-bindsym	$mod+Control+a exec arduino 
-bindsym $mod+Control+k exec kicad
-bindsym $mod+Control+e exec emacs
-bindsym $mod+Control+d exec edrawmax
+#bindsym $mod+Control+f exec firefox
+#bindsym $mod+Control+n exec nautilus
+#bindsym	$mod+Control+a exec arduino 
+#bindsym $mod+Control+k exec kicad
+#bindsym $mod+Control+e exec emacs
+#bindsym $mod+Control+d exec edrawmax
+#bindsym $mod+Control+v exec virtualbox
 
-# sound                                                                                                                                            
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+# sound                                                                                                                                         
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # brightness
-bindsym XF86MonBrightnessUp exec xrandr --output $screen1 --brightness 1
-bindsym XF86MonBrightnessDown exec xrandr --output $screen1 --gamma 1.1:0.8:0.7 --brightness 0.55
+#bindsym XF86MonBrightnessUp exec xrandr --output $screen1 --brightness 1
+#bindsym XF86MonBrightnessDown exec xrandr --output $screen1 --gamma 1.1:0.8:0.7 --brightness 0.55
 
 # Monitors
 bindsym $mod+Control+m exec xrandr --output $screen2 --above $screen1 --mode 3840x2160
@@ -71,10 +72,10 @@ bindsym	$mod+Control+Shift+m exec xrandr --output $screen2 --off
 bindsym $mod+Control+Shift+p exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
+#bindsym $mod+Control+j focus left
+#bindsym $mod+Control+k focus down
+#bindsym $mod+Control+l focus up
+#bindsym $mod+Control+odiaeresis focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -83,24 +84,24 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Control+Left move left
+bindsym $mod+Control+Down move down
+bindsym $mod+Control+Up move up
+bindsym $mod+Control+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Control+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Control+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Control+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Control+s layout stacking
+bindsym $mod+Control+w layout tabbed
+bindsym $mod+Control+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -109,7 +110,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Control+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -146,7 +147,8 @@ bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #bindsym $mod+shift+e exit
 #"i3-msg exit"
-bindsym $mod+Shift+l exec "i3lock -i /home/anton/Pictures/wallpaper/black.png"
+bindsym $mod+Shift+l exec "betterlockscreen --lock blur"
+#"i3lock -i /home/anton/Pictures/wallpaper/black.png"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -172,7 +174,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+Control+r mode "resize"
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -199,10 +201,14 @@ set $urgent-bg-color     #E53935
 exec "feh --bg-fill /home/anton/Pictures/wallpaper/wallpaper.jpg"
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
-# Looke and feel
-# A 3 px border
 
+# auto start
+## polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+## disable trackpad  xinput list
+exec xinput disable "Elan Touchpad"
+## key bindings with simple x hot key demon
+exec_always --no-startup-id sxhkd
 
 #############################
 ### settings for i3-gaps: ###
