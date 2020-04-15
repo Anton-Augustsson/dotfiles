@@ -37,8 +37,21 @@
 
 ;; Start with fullscreen
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
- (custom-set-faces)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(package-selected-packages
+   (quote
+    (csv-mode solarized-theme pyvenv projectile multiple-cursors markdown-mode magit haskell-mode flycheck dashboard auto-complete all-the-icons))))
+ 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 
 ;;----------------------------------------------------------------------------
@@ -63,7 +76,7 @@
 ;; list the packages you want
 (setq package-list
       '(auto-complete multiple-cursors flycheck pyvenv      ; Editing tools
-	markdown-mode haskell-mode tex-mode                 ; Languages
+	markdown-mode haskell-mode tex-mode csv-mode        ; Languages
 	solarized-theme                                     ; Themes
 	page-break-lines projectile all-the-icons dashboard ; Dashboard
 	magit))                                             ; Tools
@@ -145,10 +158,10 @@
 (require 'compile)
 (defvar compile-guess-command-table
   '((c-mode       . "gcc -Wall -g %s -o %s -lm")
-    (c++-mode     . "g++ -Wall %s -o %s -std=c++14")
+    (c++-mode     . "g++ -Wall -g %s -o %s -std=c++14")
     (fortran-mode . "gfortran -C %s -o %s")
     (haskell-mode . "ghc -dynamic %s")
-    (tex-mode   . "pdflatex %s")
+    (latex-mode   . "pdflatex %s")
     ))
 
 ;; The actual command
@@ -184,7 +197,7 @@
 (add-hook 'c++-mode-hook     (function compile-guess-command))
 (add-hook 'fortran-mode-hook (function compile-guess-command))
 (add-hook 'haskell-mode-hook (function compile-guess-command))
-(add-hook 'tex-mode-hook     (function compile-guess-command))
+(add-hook 'latex-mode-hook   (function compile-guess-command))
 
 
 
