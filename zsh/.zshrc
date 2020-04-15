@@ -1,8 +1,9 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/anton/.oh-my-zsh"
+export ZSH="/home/anton/.config/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -12,7 +13,7 @@ export ZSH="/home/anton/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # fancy
 ZSH_THEME="agnoster"
-
+DEFAULT_USER=$USER
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -106,3 +107,26 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e="sudo emacs -nw"
 alias q="exit"
+
+# History configuration
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP
+###################### End of oh-my-zsh
+
+# Default programs 
+export EDITOR=/usr/bin/emacs
+export BROWSER=/usr/bin/chromium
+
+# Clean up
+#env HOME=/home/anton/.config/.emacs.d emacs
+
+# Cabal
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.cabal/bin
+PATH=$PATH:~/.cabal/bin
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anton/.cabal/bin:/home/anton/.cabal/bin:~/.cabal/bin
