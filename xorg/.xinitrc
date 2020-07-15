@@ -54,6 +54,9 @@ setxkbmap se &
 # Compositor
 picom -f &
 
+# Statusbar
+/home/$USER/dwm-bar/dwm_bar.sh &
+
 # Start dwm
 exec dwm
 
