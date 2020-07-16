@@ -57,6 +57,11 @@ picom -f &
 # Statusbar
 /home/$USER/dwm-bar/dwm_bar.sh &
 
+# Wallpaper
+xwallpaper --zoom ~/.config/wallpaper.$(ls ~/.config | grep "wallpaper" | sed 's/wallpaper.//') 
+
+# Keyboard shortcuts sxhkd
+pgrep sxhkd || sxhkd &
+
 # Start dwm
 exec dwm
-

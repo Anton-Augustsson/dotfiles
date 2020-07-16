@@ -18,5 +18,5 @@ super + ctrl + p
 	scrot $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
     	
 # Lounching Applications
-super + {d,t,f,e,n,b,v,k,o,a,u}
-	{dmenu_run,urxvt,firefox,emacs,nautilus,tor-browser,virtualbox,kicad,openscad,arduino,deluge}
+super + {d,t,c,e,n,k,o,a}
+	{dmenu_run,st,chromium,emacs,nautilus,kicad,openscad,arduino}
