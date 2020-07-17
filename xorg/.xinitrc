@@ -55,7 +55,8 @@ setxkbmap se &
 picom -f &
 
 # Statusbar
-/home/$USER/dwm-bar/dwm_bar.sh &
+#/home/$USER/dwm-bar/dwm_bar.sh &
+/home/$USER/.config/dwm_bar/dwm_bar.sh &
 
 # Wallpaper
 xwallpaper --zoom ~/.config/wallpaper.$(ls ~/.config | grep "wallpaper" | sed 's/wallpaper.//') 
