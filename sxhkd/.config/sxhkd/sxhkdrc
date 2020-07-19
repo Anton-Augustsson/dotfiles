@@ -22,5 +22,5 @@ super + ctrl + l
       xlock
 
 # Lounching Applications
-super + {d,t,c,e,n,k,o,a,g}
+super + shift + {d,t,c,e,n,k,o,a,g}
 	{dmenu_run,st,chromium,emacs,nautilus,kicad,openscad,arduino,gimp}
