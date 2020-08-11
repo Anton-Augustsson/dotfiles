@@ -44,7 +44,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (csv-mode solarized-theme pyvenv projectile multiple-cursors markdown-mode magit haskell-mode flycheck dashboard auto-complete all-the-icons))))
+    (afternoon-theme peep-dired dirtree csv-mode solarized-theme pyvenv projectile multiple-cursors markdown-mode magit haskell-mode flycheck dashboard auto-complete all-the-icons pdf-tools peep-dired))))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -52,7 +52,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 ;;----------------------------------------------------------------------------
 ;; Automaticly install packages
@@ -70,6 +69,7 @@
 (add-to-list 'package-archives
              '("gnu" . "https://elpa.gnu.org/packages/") t)
 
+
 (package-initialize)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
@@ -77,9 +77,9 @@
 (setq package-list
       '(auto-complete multiple-cursors flycheck pyvenv      ; Editing tools
 	markdown-mode haskell-mode tex-mode csv-mode        ; Languages
-	solarized-theme                                     ; Themes
+	solarized-theme afternoon-theme                     ; Themes
 	page-break-lines projectile all-the-icons dashboard ; Dashboard
-	magit))                                             ; Tools
+	magit pdf-tools peep-dired))                        ; Tools
 
 ;; activate all the packages
 (package-initialize)
@@ -100,7 +100,8 @@
 
 ;; Themes
 ;(load-theme 'solarized-dark t)
-(load-theme 'adwaita t)
+;(load-theme 'adwaita t)
+(load-theme 'afternoon t)
 
 ;; Auto complete
 (require 'auto-complete)
@@ -127,6 +128,20 @@
                         (bookmarks . 5)
                         (projects . 5)))
 
+;; PDF Tools
+(pdf-tools-install)
+(pdf-loader-install)
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+
+;;preview files in dired
+(define-key dired-mode-map "P" nil)
+(setq peep-dired-cleanup-on-disable t)
+
+;;(use-package peep-dired
+;;  :ensure t
+;;  :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
+;;  :bind (:map dired-mode-map
+;;              ("P" . peep-dired)))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
@@ -145,9 +160,30 @@
 ;; Enable and disable tool bar
 (global-set-key (kbd "C-c C-p") 'tool-bar-mode)
 
+;; Compile
+(global-set-key (kbd "C-c c") 'compile)
+
+;; Eval
+(global-set-key (kbd "C-c e") 'eval-buffer)
+
+;; Magit
+(global-set-key (kbd "C-c m") 'magit)
+
 ;; Enable and disable flyspell mode
 (global-set-key (kbd "C-c C-d") 'flyspell-mode)
 
+;; Wind Move
+;(global-set-key (kbd "C-c <left>")  'nil)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+;(global-set-key (kbd "C-c <right>")  'nil)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+;global-set-key (kbd "C-c <up>")  'nil)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+;(global-set-key (kbd "C-c <down>")  'nil)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; Peep Dired
+(global-set-key (kbd "C-c p")  'peep-dired)
 
 ;;----------------------------------------------------------------------------
 ;; Compile configuration
