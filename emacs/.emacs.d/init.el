@@ -44,7 +44,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (afternoon-theme peep-dired dirtree csv-mode solarized-theme pyvenv projectile multiple-cursors markdown-mode magit haskell-mode flycheck dashboard auto-complete all-the-icons pdf-tools peep-dired))))
+    (dired-omit-mode afternoon-theme peep-dired dirtree csv-mode solarized-theme pyvenv projectile multiple-cursors markdown-mode magit haskell-mode flycheck dashboard auto-complete all-the-icons pdf-tools peep-dired))))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -79,7 +79,7 @@
 	markdown-mode haskell-mode tex-mode csv-mode        ; Languages
 	solarized-theme afternoon-theme                     ; Themes
 	page-break-lines projectile all-the-icons dashboard ; Dashboard
-	magit pdf-tools peep-dired))                        ; Tools
+	magit pdf-tools peep-dired))                  ; Tools
 
 ;; activate all the packages
 (package-initialize)
@@ -132,6 +132,7 @@
 (pdf-tools-install)
 (pdf-loader-install)
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+(setq auto-revert-interval 1)
 
 ;;preview files in dired
 (define-key dired-mode-map "P" nil)
@@ -142,6 +143,14 @@
 ;;  :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
 ;;  :bind (:map dired-mode-map
 ;;              ("P" . peep-dired)))
+
+;; dired-omit-mode
+(add-hook 'dired-load-hook '(lambda () (require 'dired-x))) ; Load Dired X when Dired is loaded.
+(setq dired-omit-mode t) ; Turn on Omit mode.
+(require 'dired-x)
+(setq-default dired-omit-files-p t) ; Buffer-local variable
+(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+(add-hook 'dired-mode-hook 'dired-hide-details-mode) ; hide details details
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
@@ -172,6 +181,9 @@
 ;; Enable and disable flyspell mode
 (global-set-key (kbd "C-c C-d") 'flyspell-mode)
 
+;; Enable and disable pdf automatic update
+(global-set-key (kbd "C-c r") 'auto-revert-mode)
+
 ;; Wind Move
 ;(global-set-key (kbd "C-c <left>")  'nil)
 (global-set-key (kbd "C-c <left>")  'windmove-left)
@@ -184,6 +196,7 @@
 
 ;; Peep Dired
 (global-set-key (kbd "C-c p")  'peep-dired)
+
 
 ;;----------------------------------------------------------------------------
 ;; Compile configuration
