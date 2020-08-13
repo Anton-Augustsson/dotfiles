@@ -21,6 +21,10 @@ super + ctrl + p
 super + ctrl + l
       xlock
 
-# Lounching Applications
-super + shift + {d,t,c,e,n,k,o,a,g}
-	{dmenu_run,st,chromium,emacs,nautilus,kicad,openscad,arduino,gimp}
+# Lounching Applications First
+super + shift + {d,t,c,e,n,o,k,g,a}
+	{dmenu_run,st,chromium,emacs,nautilus,openscad,kicad,gimp,arduino}
+
+# Lounching Applications Second
+super + shift + ctrl + {e,c}
+      	{emacsclient -c,cura}
