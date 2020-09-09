@@ -13,6 +13,12 @@ super + ctrl + n
 #super + ctrl + l
 #        sudo brightnessctl --device='tpacpi::kbd_backlight' set 1
 
+# Multiple monitor
+super + ctrl + m
+        xrandr --output HDMI-2 --above eDP-1 --mode 3840x2160
+super + ctrl + o	
+	xrandr --output HDMI-2 --off
+	
 ## Screen shot
 super + ctrl + p
 	scrot $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png

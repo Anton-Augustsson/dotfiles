@@ -33,6 +33,9 @@
 ;; Peep Dired
 (global-set-key (kbd "C-c p")  'peep-dired)
 
+;; Hide dired mode
+(global-set-key (kbd "C-c o")  'dired-omit-mode)
+
 ;; Wind Move
 ;(global-set-key (kbd "C-c <left>")  'nil)
 (global-set-key (kbd "C-c <left>")  'windmove-left)

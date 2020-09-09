@@ -64,5 +64,8 @@ xwallpaper --zoom ~/.config/wallpaper.$(ls ~/.config | grep "wallpaper" | sed 's
 # Keyboard shortcuts sxhkd
 pgrep sxhkd || sxhkd &
 
+# Start emacs server
+emacs --daemon &
+
 # Start dwm
 exec dwm
