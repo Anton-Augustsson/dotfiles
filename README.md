@@ -14,6 +14,12 @@ These are the dependencies that you have to manually install yourself:
 - **zinit** for managing packages in zsh;
 - **lf** is a terminal file manager.
 
+Some dependencies are managed with git subtree. To update use:
+```bash
+git subtree pull --prefix .config/tmux/plugins/tmux https://git::@github.com/catppuccin/tmux tags/latest --squash
+git subtree pull --prefix .config/tmux/plugins/tpm https://github.com/tmux-plugins/tpm master --squash
+```
+
 ## Usage
 To symlink your files use:
 ```bash
@@ -29,4 +35,5 @@ stow -Dt .
 For tmux, you have to `CTRL+B I`, note the capital `I`.
 
 Note that it does not matter if you change the file in the dofiles folder or the symlink file, e.g., `~/.zshrc` or `~/.config/nvim/init.lua`, that is kind of the point of symlink.
+
 
