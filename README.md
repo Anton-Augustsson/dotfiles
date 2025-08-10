@@ -13,6 +13,8 @@ These are the dependencies that you have to manually install yourself:
 - **zsh** > bash;
 - **zinit** for managing packages in zsh;
 - **lf** is a terminal file manager.
+- **zathura** is used as a pdf viewer.
+
 
 Some dependencies are managed with git subtree. To update use:
 ```bash

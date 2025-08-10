@@ -3,25 +3,17 @@ set preview true
 set previewer ~/.config/lf/preview.sh
 set cleaner ~/.config/lf/cleaner.sh
 
-cmd on-select &{{
-  case "$(file --mime-type -Lb "$f")" in
-    image/*)
-      kitty +kitten icat --clear
-      kitty +kitten icat "$f" > /dev/tty
+cmd open ${{
+  case $(file --mime-type -Lb "$f") in
+    text/*) 
+      nvim "$fx"
       ;;
-    *)
-      kitty +kitten icat --clear
-      #cat "$f"
-      bat --color=always --style=numbers "$file" || cat "$file"
+    application/pdf)
+      nohup zathura "$fx" >/dev/null 2>&1 &
+      ;;
+    *) 
+      xdg-open "$fx"
       ;;
   esac
 }}
 
-cmd open ${{
-    case $(file --mime-type -Lb "$f") in
-        text/*) nvim "$fx";;
-        *) xdg-open "$fx";;
-    esac
-}}
-
-#map <Enter> $EDITOR $f
