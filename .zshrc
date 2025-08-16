@@ -54,3 +54,5 @@ lfcd() {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
+export PATH="$HOME/.local/bin:$PATH"
